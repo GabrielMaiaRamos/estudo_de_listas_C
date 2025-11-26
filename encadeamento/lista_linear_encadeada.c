@@ -25,6 +25,7 @@ int buscaElem(lista *L, lista **pre, int elem)
     }
     // sempre altera o ponteiro pre pra o preL
     (*pre) = preL;
+
     if ((aux != NULL) && (elem == aux->info))
         // se o elemento for igual ao no atual, retorna 1
         return 1;
@@ -91,7 +92,6 @@ int posicaoElem(lista *L, int elem)
 {
     lista *aux;
     int pos = 1;
-    aux = (lista *)malloc(sizeof(lista));
 
     aux = L;
 
