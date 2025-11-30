@@ -30,7 +30,7 @@ int removeElem(fila **inicio)
 {
     // nesse caso (so por escolha mesmo) eu estou alterando o inicio dinamicamente e retornando o elemento
     // no caso da pilha, eu fiz o contrario.
-    fila *lixo = malloc(sizeof(fila));
+    fila *lixo;
     int elem;
     // se a fila nao estiver vazia
     if ((*inicio) != NULL)

@@ -15,25 +15,6 @@ struct NODUPLO
 };
 typedef struct NODUPLO duplo;
 
-int buscaElem(lista *L, lista **pre, int elem)
-{
-    lista *aux, *preL;
-    aux = L;
-    preL = NULL;
-
-    while ((aux != NULL) && (elem > aux->info))
-    {
-        preL = aux;
-        aux = aux->prox;
-    }
-    (*pre) = preL;
-
-    if ((aux != NULL) && (elem == aux->info))
-        return 1;
-
-    return 0;
-}
-
 lista *insereElem(lista *L, int elem)
 {
     lista *pre, *el;

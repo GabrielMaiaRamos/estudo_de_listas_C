@@ -105,7 +105,6 @@ lista *diferenca(lista *L1, lista *L2)
     lista *aux1 = L1, *aux2 = L2;
     lista *diferenca = NULL;
 
-    //
     while (aux1 != NULL)
     {
         while (aux2 != NULL && aux1->info < aux2->info)
