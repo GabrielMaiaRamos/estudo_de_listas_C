@@ -3,6 +3,7 @@
 #include <string.h>
 #include <stddef.h>
 
+//====================================== [ 8 ] ======================================//
 const char *greet(const char *name, const char *owner) // Grasshopper - Personalized Message
 {
     if (!strcmp(name, owner))
@@ -24,6 +25,52 @@ unsigned bin_to_decimal(const char *bin) // Bin to Decimal
     return num;
 }
 
+double solution(const double values[3], const char *const units[3])
+{
+    double force = (6.67e-11 * values[0] * values[1]) / pow(values[2], 2);
+    for (int i = 0; i < 2; i++)
+    {
+        if (strcmp(units[i], "kg"))
+
+            switch (units[i][0])
+            {
+            case 'g':
+                force /= pow(10, 3);
+                break;
+            case 'm':
+                force /= pow(10, 6);
+                break;
+            case 'l':
+                force *= 0.453592;
+                break;
+            default: // for μ
+                force /= pow(10, 9);
+                break;
+            }
+    }
+    if (strcmp(units[2], "m"))
+    {
+        switch (units[2][0])
+        {
+        case 'c':
+            force *= pow(10, 4);
+            break;
+        case 'm':
+            force *= pow(10, 6);
+            break;
+        case 'f':
+            force /= pow(0.3048, 2);
+            break;
+        default: // for μ
+            force *= pow(10, 12);
+            break;
+        }
+    }
+    return force;
+}
+
+//====================================== [ 7 ] ======================================//
+
 int dominator(const int array[/* n */], size_t n) // What dominates your array?
 {
     for (int i = 0; i < n; i++)
@@ -38,7 +85,9 @@ int dominator(const int array[/* n */], size_t n) // What dominates your array?
     return -1;
 }
 
-int make_chocolates(int small, int big, int goal)
+//====================================== [ 6 ] ======================================//
+
+int make_chocolates(int small, int big, int goal) // Pack Some Chocolates
 {
     int count = 0, min = goal / 5;
 
@@ -61,8 +110,9 @@ int make_chocolates(int small, int big, int goal)
     return -1;
 }
 
+//====================================== [ MAIN ] ======================================//
+
 int main()
 {
-
     getchar();
 }
