@@ -2,6 +2,7 @@
 #include <math.h>
 #include <string.h>
 #include <stddef.h>
+#include <stdbool.h>
 
 //====================================== [ 8 ] ======================================//
 const char *greet(const char *name, const char *owner) // Grasshopper - Personalized Message
@@ -110,9 +111,44 @@ int make_chocolates(int small, int big, int goal) // Pack Some Chocolates
     return -1;
 }
 
+// Array.diff
+int *array_diff(const int arr1[/* n1 */], size_t n1, const int arr2[/* n2 */], size_t n2, size_t *z)
+{
+    if (n1 == 0)
+    {
+        *z = 0;
+        return NULL;
+    }
+    int *arr3, count = 0;
+    bool has;
+
+    arr3 = (int *)malloc(n1 * sizeof(int));
+
+    for (size_t i = 0; i < n1; i++)
+    {
+        has = false;
+        for (size_t j = 0; j < n2; j++)
+        {
+            if (arr1[i] == arr2[j])
+            {
+                has = true;
+                break;
+            }
+        }
+        if (!has)
+        {
+            arr3[count] = arr1[i];
+            count++;
+        }
+    }
+    *z = count;
+    return arr3;
+}
+
 //====================================== [ MAIN ] ======================================//
 
 int main()
 {
+
     getchar();
 }
