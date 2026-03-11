@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <math.h>
 #include <string.h>
 #include <stddef.h>
@@ -147,8 +148,62 @@ int *array_diff(const int arr1[/* n1 */], size_t n1, const int arr2[/* n2 */], s
 
 //====================================== [ MAIN ] ======================================//
 
+// bool canJump(int *nums, int numsSize)
+// {
+//     int j = 1, rest;
+//     if (numsSize == 1)
+//         return true;
+//     if (nums[0] == 0)
+//         return false;
+//     for (int i = 0; i < numsSize - 1; i++)
+//     {
+//         rest = nums[i];
+//         printf("pos: %d, steps avaiable: %d, step ahead: %d\n", i, nums[i], numsSize - i - 1);
+//         if (nums[i] >= numsSize - i - 1)
+//             return true;
+//         while (nums[i + j] == 0)
+//         {
+//             rest -= 1;
+//             i += 1;
+//             if (rest <= 0)
+//                 return false;
+//         }
+//     }
+//     return false;
+// }
+
+bool canJump(int *nums, int numsSize)
+{
+    if (numsSize == 1)
+        return true;
+    int indice, max;
+    for (int i = 0; i < numsSize - 1; i++)
+    {
+        max = 0;
+        indice = 0;
+        printf("pos: %d, steps avaiable: %d, step ahead: %d\n", i, nums[i], numsSize - i - 1);
+        if (nums[i] >= numsSize - i - 1)
+            return true;
+        for (int j = 1; j <= nums[i]; j++)
+        {
+            if (nums[i + j] >= max)
+            {
+                max = nums[i + j];
+                indice = j;
+                printf("yeh, win, %d\n", i + j);
+            }
+            printf("%d, %d position: %d\n", max, indice, i + j);
+        }
+        if (max == 0)
+            return false;
+        i += indice - 1;
+    }
+    return false;
+}
+
 int main()
 {
-
+    int nums[12] = {4, 2, 0, 0, 1, 1, 4, 4, 4, 0, 4, 0};
+    printf("%d", canJump(nums, 12));
     getchar();
 }
