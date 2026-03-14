@@ -16,51 +16,27 @@ bool canJump(int *nums, int numsSize) // 55. Jump Game
     return (goal == 0);
 }
 
-void merge(int *nums1, int nums1Size, int m, int *nums2, int nums2Size, int n) // 88. Merge Sorted Array
+int removeDuplicates(int *nums, int numsSize) // 80. Remove Duplicates from Sorted Array II
 {
-    int i = m - 1,
-        j = n - 1,
-        right = n + m - 1;
+    if (numsSize <= 2)
+        return numsSize;
+    int k = 2;
 
-    while (j >= 0)
+    for (int i = 2; i < numsSize; i++)
     {
-        if (i >= 0 && nums1[i] >= nums2[j])
+        if (nums[i] != nums[k - 2])
         {
-            nums1[right] = nums1[i];
-            i--;
+            nums[k] = nums[i];
+            k++;
         }
-        else
-        {
-            nums1[right] = nums2[j];
-            j--;
-        }
-        right--;
     }
+    return k;
 }
 
-int removeElement(int *nums, int numsSize, int val) // 27. Remove Element
-{
-    int right = numsSize - 1, count = 0, i = 0;
-    if (numsSize == 0)
-        return 0;
-    while (count < numsSize)
-    {
-        if (nums[i] == val)
-        {
-            nums[i] = nums[right];
-            right--;
-        }
-        else
-            i++;
-        count++;
-    }
-    for (int i = 0; i < numsSize; i++)
-        return right + 1;
-}
 int main()
 {
-    int nums1[6] = {1}, size = 1;
-    printf("\n\n%d", removeElement(nums1, size, 1));
+    int nums1[11] = {0, 0, 1, 1, 1, 1, 2, 3, 3}, size = 10;
+    printf("\n\n%d", removeDuplicates(nums1, size));
 
     getchar();
 }
