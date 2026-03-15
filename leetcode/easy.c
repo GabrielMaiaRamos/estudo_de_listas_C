@@ -64,27 +64,50 @@ int removeDuplicates(int *nums, int numsSize) // 26. Remove Duplicates from Sort
     return k + 1;
 }
 
-int removeDuplicates(int *nums, int numsSize)
+int majorityElement(int *nums, int numsSize) // 169. Majority Element
+// usando Algoritmo de Votação de Boyer-Moore
 {
-    if (numsSize <= 2)
-        return numsSize;
-    int k = 2;
+    int candidate = 0;
+    int count = 0;
 
-    for (int i = 2; i < numsSize; i++)
+    for (int i = 0; i < numsSize; i++)
     {
-        if (nums[i] != nums[k - 2])
+        if (count == 0)
         {
-            nums[k] = nums[i];
-            k++;
+            candidate = nums[i];
+        }
+        if (nums[i] == candidate)
+        {
+            count++;
+        }
+        else
+        {
+            count--;
         }
     }
-    return k;
+    return candidate;
+}
+
+int maxProfit(int *prices, int pricesSize) // 121. Best Time to Buy and Sell Stock
+{
+    if (pricesSize == 0)
+        return 0;
+    int buy = prices[0], price = 0;
+    for (int i = 0; i < pricesSize; i++)
+    {
+        if (buy > prices[i])
+            buy = prices[i];
+        if (price < (prices[i] - buy))
+            price = prices[i] - buy;
+    }
+    return price;
 }
 
 int main()
 {
-    int nums1[11] = {1, 1, 2}, size = 3;
-    printf("\n\n%d", removeDuplicates(nums1, size));
+    int nums1[11] = {1, 2, 3, 4, 5, 6, 7}, size = 7;
+
+    printf("\n\n%d", maxProfit(nums1, size));
 
     getchar();
 }
